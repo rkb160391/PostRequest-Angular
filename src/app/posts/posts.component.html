@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="jumbotron">
+  <h1>All Posts</h1>
+  </div>
+
+  <div class="jumbotron">
+    <div *ngFor="let post of posts;let i = index">    
+        <h3><b><p>"{{this.post.title}}" 
+        <a class="close" (click) = "editPost(post.id,i)">
+                <div>
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </div>
+        </a>
+        <br><br>
+        <a class="close" (click) = "deletePost(post.id,i)">
+            <div>
+                <span class="glyphicon glyphicon-trash"></span>
+            </div>
+        </a>
+        </p></b></h3>
+        <blockquote><small>{{this.post.body}}</small></blockquote>
+    </div>
+
+    <div *ngIf="posts.length==0">
+        <h1><b><p class="text-danger">No posts to show !</p></b></h1>
+    </div>
+
+  </div>
+
+  <form>
+    <div class="form-group row">
+      <div class="col-xs-12">
+        <input class="form-control" type="text" id = "title" name = "title" placeholder="enter title" [(ngModel)] = "newPost.title">
+        <br>
+      </div>
+      
+      <div class="col-xs-12">
+        <textarea class="form-control" rows="5" id="body "name="body" placeholder="enter body" [(ngModel)] = "newPost.body"></textarea>
+      </div>
+    </div>
+    
+    <div class="form-group row">
+      <div class="col-xs-2 col-xs-offset-4">
+        <button type="submit" class="form-control btn btn-success" (click)="addPost()">Add new Post</button>
+      </div>
+      <div class="col-xs-2 ">
+        <button type="reset" class="form-control btn btn-danger">Reset</button>
+      </div>
+    </div>
+
+  </form>
+
+</div>
